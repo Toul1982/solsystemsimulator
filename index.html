@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solsystem-simulator</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+        color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      #fps {
+        position: fixed;
+        top: 0;
+        left: 0;
+        font-size: 12px;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 4px 6px;
+        z-index: 100;
+      }
+      #controls {
+        position: fixed;
+        top: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 8px;
+        z-index: 100;
+      }
+      #controls button {
+        margin-left: 5px;
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #555;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+      #controls button:hover {
+        background-color: #555;
+      }
+      #labels-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .planet-label {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 14px;
+        white-space: nowrap;
+        transform: translate(-50%, 0%); /* Justerar vertikal positionering till toppen av labeln */
+        pointer-events: none;
+        z-index: 50;
+        display: none; /* Dölj som standard, visas via JS */
+        text-shadow: 0 0 5px black; /* Gör texten mer läsbar mot ljusa bakgrunder */
+      }
+      /* Stil för pilen under namnskylten */
+      .planet-label::after {
+        content: '';
+        position: absolute;
+        bottom: -8px; /* Position under labeln */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid rgba(0, 0, 0, 0.7); /* Färg på pilen, matcha bakgrunden */
+      }
+    </style>
+  </head>
+<div id="control-panel">
+    <h2>Kontrollpanel</h2>
+
+    <div class="control-section">
+        <h3>Simulation</h3>
+        <label for="speed-slider">Hastighet: <span id="speed-value">1.0</span>x</label>
+        <input type="range" id="speed-slider" min="0" max="200" value="10" step="1">
+        
+        <label for="g-slider">Gravitation (G): <span id="g-value">1.0</span></label>
+        <input type="range" id="g-slider" min="0" max="10" value="1" step="0.1">
+    </div>
+
+    <div class="control-section">
+        <h3>Skapa Objekt</h3>
+        <button id="add-asteroid-btn">Skjut iväg Asteroid</button>
+        <button id="add-uranus-btn">Lägg till Uranus</button>
+        <button id="add-neptune-btn">Lägg till Neptunus</button>
+    </div>
+
+    <div class="control-section">
+        <h3>Scenarion</h3>
+        <select id="planet-select">
+            <option value="none">Välj en planet...</option>
+            </select>
+        <button id="explode-planet-btn">Spräng Planet!</button>
+        <button id="black-hole-btn">Kollapsa till Svart Hål!</button>
+    </div>
+</div>
+  <body>
+    <canvas id="bg"></canvas>
+    <div id="fps"></div>
+    <div id="labels-container"></div>
+
+    <div id="controls">
+      <button id="speed-slow">0.1x Speed</button>
+      <button id="speed-normal">1x Speed</button>
+      <button id="speed-fast">10x Speed</button>
+      <button id="speed-superfast">100x Speed</button>
+      <button id="toggle-follow">Follow Selected</button>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

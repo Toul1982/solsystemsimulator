@@ -1,0 +1,198 @@
+/* ----- Grundläggande sidinställningar & Variabler ----- */
+:root {
+    --primary-glow: #00bfff; /* DeepSkyBlue */
+    --primary-text: #e6f7ff;
+    --background-panel: rgba(10, 25, 40, 0.85);
+    --border-color: rgba(0, 191, 255, 0.3);
+    --accent-bg: rgba(0, 191, 255, 0.1);
+    --danger-color: #ff4757;
+    --font-main: 'Orbitron', sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    color: var(--primary-text);
+    font-family: var(--font-main);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+canvas#bg {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* ----- UI-paneler ----- */
+#ui-container {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: var(--background-panel);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    z-index: 100;
+    width: 280px;
+    box-shadow: 0 0 15px var(--border-color), inset 0 0 10px rgba(0, 191, 255, 0.1);
+}
+
+#fps {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 12px;
+    background: var(--background-panel);
+    padding: 5px 10px;
+    z-index: 100;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+/* ----- UI-sektioner och rubriker ----- */
+#ui-container h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+    color: var(--primary-glow);
+    text-shadow: 0 0 8px var(--primary-glow);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.ui-section {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.ui-section h3 {
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.control-row {
+    margin-bottom: 10px;
+}
+
+/* ----- UI-element (knappar, sliders, etc.) ----- */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+button, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary-text);
+    background-image: linear-gradient(rgba(255,255,255,0.05), rgba(0,0,0,0.1));
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+button:hover {
+    background-color: var(--accent-bg);
+    box-shadow: 0 0 10px var(--primary-glow);
+    color: #fff;
+}
+
+button.danger {
+    border-color: var(--danger-color);
+}
+
+button.danger:hover {
+    box-shadow: 0 0 10px var(--danger-color);
+    background-color: rgba(255, 71, 87, 0.2);
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2300bfff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right .7em top 50%;
+    background-size: .65em auto;
+}
+
+select option {
+    background: var(--background-panel);
+    color: var(--primary-text);
+}
+
+/* ----- Styling för sliders ----- */
+input[type="range"].styled-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    background: var(--accent-bg);
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+}
+input[type="range"].styled-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--primary-glow);
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 0 5px var(--primary-glow);
+}
+input[type="range"].styled-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--primary-glow);
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+}
+
+/* ----- Planet-etiketter ----- */
+.planet-label {
+  position: absolute;
+  background: var(--background-panel);
+  color: var(--primary-text);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  transform: translate(-50%, -120%);
+  pointer-events: none;
+  z-index: 50;
+  display: none;
+  border: 1px solid var(--border-color);
+  text-shadow: 0 0 5px black;
+}
+.planet-label::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid var(--border-color);
+}
