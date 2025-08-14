@@ -100,10 +100,41 @@ let frames = 0, last = performance.now();
 
 let simulationSpeed = 1.0;
 
+// --- KONTROLLER ---
+// Gamla knappar för fasta hastigheter
 document.getElementById("speed-slow").addEventListener("click", () => simulationSpeed = 0.1);
 document.getElementById("speed-normal").addEventListener("click", () => simulationSpeed = 1.0);
 document.getElementById("speed-fast").addEventListener("click", () => simulationSpeed = 10.0);
 document.getElementById("speed-superfast").addEventListener("click", () => simulationSpeed = 100.0);
+
+// Nya reglage för dynamisk kontroll
+const speedSlider = document.getElementById('speed-slider');
+const speedValue = document.getElementById('speed-value');
+const gSlider = document.getElementById('g-slider');
+const gValue = document.getElementById('g-value');
+
+// Sätt startvärden för texten från reglagens default-värde
+const initialSpeed = parseFloat(speedSlider.value) / 10.0;
+simulationSpeed = initialSpeed;
+speedValue.textContent = initialSpeed.toFixed(1);
+
+const initialG = parseFloat(gSlider.value);
+engine.G = initialG;
+gValue.textContent = initialG.toFixed(1);
+
+
+// Event listeners för reglagen
+speedSlider.addEventListener('input', (event) => {
+    const speed = parseFloat(event.target.value) / 10.0; // Skala om 0-200 till 0-20
+    simulationSpeed = speed;
+    speedValue.textContent = speed.toFixed(1);
+});
+
+gSlider.addEventListener('input', (event) => {
+    const g = parseFloat(event.target.value);
+    engine.G = g;
+    gValue.textContent = g.toFixed(1);
+});
 
 
 function loop() {
