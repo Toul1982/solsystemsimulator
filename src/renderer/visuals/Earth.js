@@ -32,11 +32,13 @@ export default class Earth extends BaseBody {
 
     _createCloudMesh() {
         const cloudGeo = new THREE.SphereGeometry(this.config.radius * 1.01, 32, 32);
-        const cloudMat = new THREE.MeshPhongMaterial({
+        const cloudMat = new THREE.MeshStandardMaterial({
             map: this.cloudTexture,
             transparent: true,
             opacity: 0.8,
             blending: THREE.AdditiveBlending,
+            metalness: 0.1,
+            roughness: 0.5
         });
         const mesh = new THREE.Mesh(cloudGeo, cloudMat);
         mesh.name = "earth_clouds";

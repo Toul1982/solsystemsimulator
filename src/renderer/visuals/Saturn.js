@@ -7,8 +7,8 @@ export default class Saturn extends BaseBody {
         
         this.ringTexture = ringTexture;
         
-        const atmosphereMesh = this._createAtmosphere(1.03, 0xfff0dd, 0.1);
-        this.mesh.add(atmosphereMesh);
+        const glowMesh = this._createGlow(1.05, 0xfff0dd);
+        this.mesh.add(glowMesh);
 
         const ringMesh = this._createRingMesh();
         this.mesh.add(ringMesh);

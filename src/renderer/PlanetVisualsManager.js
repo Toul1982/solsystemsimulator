@@ -15,18 +15,18 @@ export default class PlanetVisualsManager {
         // Se till att filnamn och filändelser (.png eller .jpg) stämmer exakt
         // med filerna i din /public/texture/ mapp.
         this.textures = {
-            'clouds':  this.textureLoader.load('/texture/clouds.png'),
-            'Sun':     this.textureLoader.load('/texture/Sun.png'),
-            'Mercury': this.textureLoader.load('/texture/Merkurius.png'),
-            'Venus':   this.textureLoader.load('/texture/Venus.png'),
-            'Earth':   this.textureLoader.load('/texture/Jorden.png'),
-            'Mars':    this.textureLoader.load('/texture/Mars.png'),
-            'Jupiter': this.textureLoader.load('/texture/Jupiter.png'),
-            'Saturn':  this.textureLoader.load('/texture/Saturn.png'),
-            'Uranus':  this.textureLoader.load('/texture/Uranus.png'),
-            'Neptune': this.textureLoader.load('/texture/Neptunus.png'),
+            'clouds':  this.textureLoader.load('./texture/clouds.png'),
+            'Sun':     this.textureLoader.load('./texture/Sun.png'),
+            'Mercury': this.textureLoader.load('./texture/Merkurius.png'),
+            'Venus':   this.textureLoader.load('./texture/Venus.png'),
+            'Earth':   this.textureLoader.load('./texture/Jorden.png'),
+            'Mars':    this.textureLoader.load('./texture/Mars.png'),
+            'Jupiter': this.textureLoader.load('./texture/Jupiter.png'),
+            'Saturn':  this.textureLoader.load('./texture/Saturn.png'),
+            'Uranus':  this.textureLoader.load('./texture/Uranus.png'),
+            'Neptune': this.textureLoader.load('./texture/Neptunus.png'),
             'Moon':    null, // Månen har ingen textur i din mapp, så den blir grå
-            'ring':    this.textureLoader.load('/texture/ring.png')
+            'ring':    this.textureLoader.load('./texture/ring.png')
         };
     }
 
